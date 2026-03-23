@@ -1,0 +1,211 @@
+/**
+ * Mock data for development and offline use.
+ *
+ * These mocks follow exactly the same contract as the real API responses,
+ * making it trivial to swap them for real Power BI data in production.
+ * Simply set USE_MOCK_DATA=false in your .env and provide real credentials.
+ */
+
+import {
+  KpiResponse,
+  ChartResponse,
+  TableResponse,
+  FiltersResponse,
+} from "../types";
+
+// ─── KPIs ────────────────────────────────────────────────────────────────────
+
+export const mockKpis: KpiResponse = {
+  period: "2024-Q4",
+  lastUpdated: new Date().toISOString(),
+  data: [
+    {
+      id: "total_revenue",
+      label: "Receita Total",
+      value: 4_820_300,
+      previousValue: 4_210_500,
+      change: 14.48,
+      trend: "up",
+      format: "currency",
+      description: "Receita acumulada no período",
+    },
+    {
+      id: "orders",
+      label: "Pedidos",
+      value: 12_847,
+      previousValue: 11_203,
+      change: 14.67,
+      trend: "up",
+      format: "number",
+      description: "Total de pedidos realizados",
+    },
+    {
+      id: "avg_ticket",
+      label: "Ticket Médio",
+      value: 375.2,
+      previousValue: 392.8,
+      change: -4.48,
+      trend: "down",
+      format: "currency",
+      description: "Valor médio por pedido",
+    },
+    {
+      id: "conversion",
+      label: "Conversão",
+      value: 3.84,
+      previousValue: 3.51,
+      change: 9.4,
+      trend: "up",
+      format: "percentage",
+      description: "Taxa de conversão de visitas em pedidos",
+    },
+    {
+      id: "active_customers",
+      label: "Clientes Ativos",
+      value: 8_412,
+      previousValue: 7_890,
+      change: 6.62,
+      trend: "up",
+      format: "number",
+      description: "Clientes com ao menos 1 compra no período",
+    },
+    {
+      id: "nps",
+      label: "NPS",
+      value: 67,
+      previousValue: 61,
+      change: 9.84,
+      trend: "up",
+      format: "number",
+      description: "Net Promoter Score",
+    },
+  ],
+};
+
+// ─── Revenue Chart (Line / Area) ─────────────────────────────────────────────
+
+export const mockRevenueChart: ChartResponse = {
+  title: "Receita ao Longo do Tempo",
+  description: "Comparativo de receita mensal — ano atual vs. ano anterior",
+  period: "2024",
+  lastUpdated: new Date().toISOString(),
+  series: [
+    { key: "current", label: "2024", color: "#2563eb" },
+    { key: "previous", label: "2023", color: "#94a3b8" },
+  ],
+  data: [
+    { period: "Jan", current: 340_200, previous: 280_100 },
+    { period: "Fev", current: 298_700, previous: 310_400 },
+    { period: "Mar", current: 412_500, previous: 355_200 },
+    { period: "Abr", current: 388_900, previous: 342_800 },
+    { period: "Mai", current: 445_100, previous: 391_000 },
+    { period: "Jun", current: 502_300, previous: 420_600 },
+    { period: "Jul", current: 479_800, previous: 403_200 },
+    { period: "Ago", current: 521_400, previous: 437_900 },
+    { period: "Set", current: 493_200, previous: 451_700 },
+    { period: "Out", current: 558_700, previous: 468_300 },
+    { period: "Nov", current: 612_400, previous: 501_200 },
+    { period: "Dez", current: 767_100, previous: 648_400 },
+  ],
+};
+
+// ─── Category Chart (Bar) ────────────────────────────────────────────────────
+
+export const mockCategoryChart: ChartResponse = {
+  title: "Receita por Categoria",
+  description: "Performance de receita por linha de produto no período",
+  period: "2024-Q4",
+  lastUpdated: new Date().toISOString(),
+  series: [
+    { key: "revenue", label: "Receita", color: "#2563eb" },
+    { key: "target", label: "Meta", color: "#e2e8f0" },
+  ],
+  data: [
+    { period: "Eletrônicos", revenue: 1_240_500, target: 1_100_000 },
+    { period: "Vestuário", revenue: 980_200, target: 1_050_000 },
+    { period: "Alimentos", revenue: 756_800, target: 700_000 },
+    { period: "Casa & Deco", revenue: 642_100, target: 600_000 },
+    { period: "Esportes", revenue: 518_400, target: 550_000 },
+    { period: "Beleza", revenue: 412_300, target: 400_000 },
+    { period: "Livros", revenue: 270_000, target: 300_000 },
+  ],
+};
+
+// ─── Top Items Table ─────────────────────────────────────────────────────────
+
+export const mockTopItemsTable: TableResponse = {
+  title: "Top Produtos por Receita",
+  lastUpdated: new Date().toISOString(),
+  total: 248,
+  page: 1,
+  pageSize: 10,
+  totalPages: 25,
+  columns: [
+    { key: "rank", label: "#", format: "number", align: "center" },
+    { key: "product", label: "Produto", format: "text", align: "left", sortable: true },
+    { key: "category", label: "Categoria", format: "text", align: "left", sortable: true },
+    { key: "revenue", label: "Receita", format: "currency", align: "right", sortable: true },
+    { key: "orders", label: "Pedidos", format: "number", align: "right", sortable: true },
+    { key: "avgTicket", label: "Ticket Médio", format: "currency", align: "right", sortable: true },
+    { key: "growth", label: "Crescimento", format: "percentage", align: "right", sortable: true },
+  ],
+  data: [
+    { id: "1", rank: 1, product: "Smartphone Pro X", category: "Eletrônicos", revenue: 284_500, orders: 412, avgTicket: 690.5, growth: 22.4 },
+    { id: "2", rank: 2, product: "Fone Bluetooth ANC", category: "Eletrônicos", revenue: 198_200, orders: 1_204, avgTicket: 164.6, growth: 35.1 },
+    { id: "3", rank: 3, product: "Tênis Running Pro", category: "Esportes", revenue: 176_800, orders: 892, avgTicket: 198.2, growth: 18.7 },
+    { id: "4", rank: 4, product: "Smart Watch Series 4", category: "Eletrônicos", revenue: 165_300, orders: 567, avgTicket: 291.5, growth: -3.2 },
+    { id: "5", rank: 5, product: "Kit Skincare Premium", category: "Beleza", revenue: 142_700, orders: 1_089, avgTicket: 131.0, growth: 41.8 },
+    { id: "6", rank: 6, product: "Cafeteira Express Pro", category: "Casa & Deco", revenue: 138_900, orders: 734, avgTicket: 189.2, growth: 12.3 },
+    { id: "7", rank: 7, product: "Notebook Ultra Slim", category: "Eletrônicos", revenue: 127_400, orders: 210, avgTicket: 606.7, growth: 8.9 },
+    { id: "8", rank: 8, product: "Jaqueta Windbreaker", category: "Vestuário", revenue: 118_600, orders: 1_432, avgTicket: 82.8, growth: 27.6 },
+    { id: "9", rank: 9, product: "Whey Protein 2kg", category: "Alimentos", revenue: 112_300, orders: 2_104, avgTicket: 53.4, growth: 19.4 },
+    { id: "10", rank: 10, product: "Mochila Executiva", category: "Casa & Deco", revenue: 98_700, orders: 891, avgTicket: 110.8, growth: -1.8 },
+  ],
+};
+
+// ─── Filters ─────────────────────────────────────────────────────────────────
+
+export const mockFilters: FiltersResponse = {
+  lastUpdated: new Date().toISOString(),
+  filters: [
+    {
+      id: "period",
+      label: "Período",
+      type: "select",
+      options: [
+        { value: "2024-Q4", label: "Q4 2024" },
+        { value: "2024-Q3", label: "Q3 2024" },
+        { value: "2024-Q2", label: "Q2 2024" },
+        { value: "2024-Q1", label: "Q1 2024" },
+        { value: "2024", label: "Ano 2024" },
+        { value: "2023", label: "Ano 2023" },
+      ],
+    },
+    {
+      id: "category",
+      label: "Categoria",
+      type: "multiselect",
+      options: [
+        { value: "electronics", label: "Eletrônicos" },
+        { value: "clothing", label: "Vestuário" },
+        { value: "food", label: "Alimentos" },
+        { value: "home", label: "Casa & Deco" },
+        { value: "sports", label: "Esportes" },
+        { value: "beauty", label: "Beleza" },
+        { value: "books", label: "Livros" },
+      ],
+    },
+    {
+      id: "region",
+      label: "Região",
+      type: "multiselect",
+      options: [
+        { value: "southeast", label: "Sudeste" },
+        { value: "south", label: "Sul" },
+        { value: "northeast", label: "Nordeste" },
+        { value: "midwest", label: "Centro-Oeste" },
+        { value: "north", label: "Norte" },
+      ],
+    },
+  ],
+};
