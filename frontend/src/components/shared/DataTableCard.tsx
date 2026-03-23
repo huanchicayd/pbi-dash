@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { TableCardSkeleton } from "./LoadingSkeleton";
 import { ErrorState } from "./ErrorState";
 import { formatValue, relativeTime } from "@/lib/utils";
-import type { TableResponse, ActiveFilters } from "@/types";
+import type { ActiveFilters } from "@/types";
 import { useTopItems } from "@/hooks/useTable";
 import { cn } from "@/lib/utils";
 

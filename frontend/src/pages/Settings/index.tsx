@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import {
   ExternalLink, CheckCircle2, XCircle, Database,
-  KeyRound, Globe, RefreshCw,
+  Globe, RefreshCw,
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

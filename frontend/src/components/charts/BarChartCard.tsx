@@ -28,11 +28,6 @@ interface BarChartCardProps {
   layout?: "vertical" | "horizontal";
 }
 
-interface TooltipPayload {
-  name: string;
-  value: number;
-  payload: ChartDataPoint;
-}
 
 export function BarChartCard({
   data,
