@@ -14,7 +14,7 @@ import { ChartCardSkeleton } from "@/components/shared/LoadingSkeleton";
 import { ErrorState } from "@/components/shared/ErrorState";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { formatCurrency, relativeTime } from "@/lib/utils";
-import type { ChartResponse, ChartDataPoint } from "@/types";
+import type { ChartResponse } from "@/types";
 
 const DEFAULT_COLORS = ["#2563eb", "#e2e8f0", "#16a34a", "#ea580c"];
 
